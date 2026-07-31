@@ -1,0 +1,12 @@
+# Xcode
+*.xcworkspace
+xcuserdata/
+DerivedData/
+*.ipa
+*.dSYM.zip
+*.dSYM
+
+# Archivos sensibles
+*.p12
+*.cer
+*.mobileprovision
