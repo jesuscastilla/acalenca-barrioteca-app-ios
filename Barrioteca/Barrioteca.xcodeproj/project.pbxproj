@@ -1,0 +1,153 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+		AAAA000000010 /* BarriotecaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarriotecaApp.swift; sourceTree = "<group>"; };
+		AAAA000000020 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		AAAA000000030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		AAAA000000040 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		AAAA000000050 /* Barrioteca.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Barrioteca.entitlements; sourceTree = "<group>"; };
+		AAAA000000100 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				AAAA000000110 /* Barrioteca.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		AAAA000000110 /* Barrioteca.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Barrioteca.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		AAAA000000200 /* Barrioteca group */ = {
+			isa = PBXGroup;
+			children = (
+				AAAA000000010 /* BarriotecaApp.swift */,
+				AAAA000000020 /* ContentView.swift */,
+				AAAA000000030 /* Assets.xcassets */,
+				AAAA000000040 /* Info.plist */,
+				AAAA000000050 /* Barrioteca.entitlements */,
+			);
+			path = Barrioteca;
+			sourceTree = "<group>";
+		};
+		AAAA000000300 /* Root group */ = {
+			isa = PBXGroup;
+			children = (
+				AAAA000000200 /* Barrioteca group */,
+				AAAA000000100 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		AAAA000000400 /* Build config Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Barrioteca/Barrioteca.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Barrioteca/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Barrioteca Acalencá";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Barrioteca Acalencá. GPL v3.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.barrioteca.acalenca.ios;
+				PRODUCT_NAME = Barrioteca;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		AAAA000000500 /* Build config Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Barrioteca/Barrioteca.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = Barrioteca/Info.plist;
+				INFOPLIST_KEY_CFBundleDisplayName = "Barrioteca Acalencá";
+				INFOPLIST_KEY_NSHumanReadableCopyright = "Copyright © 2026 Barrioteca Acalencá. GPL v3.";
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.barrioteca.acalenca.ios;
+				PRODUCT_NAME = Barrioteca;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		AAAA000000600 /* Build config list */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				AAAA000000400 /* Debug */,
+				AAAA000000500 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		AAAA000000700 /* Native target */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = AAAA000000600 /* Build config list */;
+			buildPhases = (
+				AAAA000000710 /* Sources */,
+				AAAA000000720 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Barrioteca;
+			productName = Barrioteca;
+			productReference = AAAA000000110 /* Barrioteca.app */;
+			productType = "com.apple.product-type.application";
+		};
+		AAAA000000710 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAAA000000720 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAAA000000800 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+			};
+			buildConfigurationList = AAAA000000600 /* Build config list */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = es;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				es,
+				Base,
+			);
+			mainGroup = AAAA000000300 /* Root group */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				AAAA000000700 /* Native target */,
+			);
+		};
+	};
+	rootObject = AAAA000000800 /* Project object */;
+}

@@ -5,8 +5,21 @@ DerivedData/
 *.ipa
 *.dSYM.zip
 *.dSYM
+*.xcarchive
+build/
+Payload/
+
+# Swift Package Manager
+.swiftpm/
+
+# CocoaPods
+Pods/
 
 # Archivos sensibles
 *.p12
 *.cer
 *.mobileprovision
+
+# Archivos de sistema
+.DS_Store
+Thumbs.db

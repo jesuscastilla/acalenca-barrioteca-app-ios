@@ -1,0 +1,57 @@
+name: Build iOS App
+
+on:
+  push:
+    branches: [master, main]
+  workflow_dispatch:
+
+jobs:
+  build:
+    name: Build iOS IPA
+    runs-on: macos-15
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Xcode
+        uses: maxim-lobanov/setup-xcode@v1
+        with:
+          xcode-version: latest-stable
+
+      - name: Build unsigned IPA
+        run: |
+          cd Barrioteca
+          xcodebuild \
+            -project Barrioteca.xcodeproj \
+            -scheme Barrioteca \
+            -configuration Release \
+            -sdk iphoneos \
+            -destination 'generic/platform=iOS' \
+            -archivePath build/Barrioteca.xcarchive \
+            CODE_SIGNING_REQUIRED=NO \
+            CODE_SIGNING_ALLOWED=NO \
+            DEVELOPMENT_TEAM="" \
+            archive
+
+      - name: Package IPA
+        run: |
+          mkdir -p Payload
+          cp -r Barrioteca/build/Barrioteca.xcarchive/Products/Applications/Barrioteca.app Payload/
+          zip -r Barrioteca-Acalenca.ipa Payload
+          rm -rf Payload
+
+      - name: Upload IPA artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: Barrioteca-iOS-unsigned
+          path: Barrioteca-Acalenca.ipa
+          retention-days: 90
+
+      - name: Show IPA info
+        run: |
+          echo "=========================================="
+          echo "  IPA generada correctamente"
+          echo "  Archivo: Barrioteca-Acalenca.ipa"
+          echo "  Tamaño: $(du -sh Barrioteca-Acalenca.ipa | cut -f1)"
+          echo "=========================================="
