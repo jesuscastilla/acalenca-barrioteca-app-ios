@@ -1,6 +1,6 @@
 # Barrioteca Acalenca - App iOS (iPhone/iPad)
 
-App nativa para iOS de la Barrioteca Acalenca, generada como **PWA empaquetada** mediante WKWebView.
+App nativa para iOS de la Barrioteca Acalenca, generada con un **WKWebView** que empaqueta la app web.
 
 ## Requisitos
 
@@ -10,17 +10,7 @@ App nativa para iOS de la Barrioteca Acalenca, generada como **PWA empaquetada**
 
 ## Como generar la app iOS
 
-### Opcion A: PWABuilder (recomendado, sin codigo)
-
-1. Ve a **https://pwabuilder.com**
-2. Introduce `https://pelotxo.synology.me/barrioteca`
-3. Haz clic en "Build My PWA"
-4. Selecciona **iOS** y descarga el proyecto Xcode
-5. Abre el proyecto en Xcode
-6. Conecta tu iPhone por USB
-7. Selecciona tu dispositivo en Xcode y haz clic en "Run"
-
-### Opcion B: Proyecto Xcode manual
+La app iOS se genera con un proyecto Xcode que carga la app web en un `WKWebView`:
 
 1. Crea un nuevo proyecto en Xcode: **iOS -> App**
 2. Sustituye el `ContentView.swift` por un `WKWebView` que cargue la URL
@@ -86,7 +76,7 @@ barrioteca-ios/
 
 | Repositorio | Descripcion |
 |------------|-------------|
-| [acalenca-barrioteca-app](https://github.com/jesuscastilla/acalenca-barrioteca-app) | PWA (frontend React) |
+| [acalenca-barrioteca-app](https://github.com/jesuscastilla/acalenca-barrioteca-app) | App web (frontend React) |
 | [acalenca-barrioteca](https://github.com/jesuscastilla/acalenca-barrioteca) | SLiMS (backend PHP) |
 | [acalenca-barrioteca-app-android](https://github.com/jesuscastilla/acalenca-barrioteca-app-android) | App Android + docs |
 
