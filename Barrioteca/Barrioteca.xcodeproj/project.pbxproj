@@ -5,6 +5,9 @@
 	};
 	objectVersion = 56;
 	objects = {
+		AAAA000000011 /* BarriotecaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA000000010 /* BarriotecaApp.swift */; };
+		AAAA000000021 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AAAA000000020 /* ContentView.swift */; };
+		AAAA000000031 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AAAA000000030 /* Assets.xcassets */; };
 		AAAA000000010 /* BarriotecaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BarriotecaApp.swift; sourceTree = "<group>"; };
 		AAAA000000020 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		AAAA000000030 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -100,6 +103,7 @@
 			buildConfigurationList = AAAA000000600 /* Build config list */;
 			buildPhases = (
 				AAAA000000710 /* Sources */,
+				AAAA000000730 /* Frameworks */,
 				AAAA000000720 /* Resources */,
 			);
 			buildRules = (
@@ -115,6 +119,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAA000000011 /* BarriotecaApp.swift in Sources */,
+				AAAA000000021 /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		AAAA000000730 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -122,6 +135,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AAAA000000031 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -142,6 +156,7 @@
 				Base,
 			);
 			mainGroup = AAAA000000300 /* Root group */;
+			productRefGroup = AAAA000000100 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (

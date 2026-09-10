@@ -1,34 +1,195 @@
 import SwiftUI
+import UIKit
 import WebKit
 
+private let appURL = URL(string: "https://pelotxo.synology.me/barrioteca/")!
+private let appHost = "pelotxo.synology.me"
+
 struct ContentView: View {
+    @StateObject private var model = WebViewModel()
+
     var body: some View {
-        WebView(url: URL(string: "https://pelotxo.synology.me/barrioteca")!)
-            .edgesIgnoringSafeArea(.all)
+        ZStack {
+            WebView(url: appURL, model: model)
+                .ignoresSafeArea()
+
+            if model.isLoading {
+                ProgressView()
+                    .progressViewStyle(.circular)
+            }
+
+            if let error = model.error {
+                VStack(spacing: 16) {
+                    Text("No se pudo cargar la Barrioteca")
+                        .font(.headline)
+                        .multilineTextAlignment(.center)
+                    Text(error.localizedDescription)
+                        .font(.footnote)
+                        .foregroundColor(.secondary)
+                        .multilineTextAlignment(.center)
+                    Button("Reintentar") {
+                        model.reload?()
+                    }
+                    .buttonStyle(.borderedProminent)
+                }
+                .padding(24)
+            }
+        }
     }
+}
+
+final class WebViewModel: ObservableObject {
+    @Published var isLoading = true
+    @Published var error: Error?
+    var reload: (() -> Void)?
 }
 
 struct WebView: UIViewRepresentable {
     let url: URL
+    @ObservedObject var model: WebViewModel
+
+    func makeCoordinator() -> Coordinator {
+        Coordinator()
+    }
 
     func makeUIView(context: Context) -> WKWebView {
         let config = WKWebViewConfiguration()
         config.allowsInlineMediaPlayback = true
-        
+
         let prefs = WKWebpagePreferences()
         prefs.allowsContentJavaScript = true
         config.defaultWebpagePreferences = prefs
-        
+
         let webView = WKWebView(frame: .zero, configuration: config)
+        webView.uiDelegate = context.coordinator
+        webView.navigationDelegate = context.coordinator
         webView.allowsBackForwardNavigationGestures = true
         webView.scrollView.contentInsetAdjustmentBehavior = .always
-        
+
+        context.coordinator.model = model
+        model.reload = { [weak webView] in
+            webView?.reload()
+        }
+        model.error = nil
+        model.isLoading = true
         webView.load(URLRequest(url: url))
         return webView
     }
-    
-    func updateUIView(_ webView: WKWebView, context: Context) {
-        // No updates needed
+
+    func updateUIView(_ webView: WKWebView, context: Context) {}
+
+    final class Coordinator: NSObject, WKUIDelegate, WKNavigationDelegate,
+        UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+
+        weak var model: WebViewModel?
+        private var openPanelCompletion: (([URL]?) -> Void)?
+
+        // MARK: - Cámara (getUserMedia del escáner)
+
+        func webView(
+            _ webView: WKWebView,
+            requestMediaCapturePermissionFor origin: WKSecurityOrigin,
+            initiatedByFrame frame: WKFrameInfo,
+            type: WKMediaCaptureType,
+            decisionHandler: @escaping (WKPermissionDecision) -> Void
+        ) {
+            decisionHandler(.grant)
+        }
+
+        // MARK: - Selector de archivo (botón "Foto" del escáner)
+
+        func webView(
+            _ webView: WKWebView,
+            runOpenPanelWith parameters: WKOpenPanelParameters,
+            initiatedByFrame frame: WKFrameInfo,
+            completionHandler: @escaping ([URL]?) -> Void
+        ) {
+            openPanelCompletion = completionHandler
+
+            guard UIImagePickerController.isSourceTypeAvailable(.photoLibrary) else {
+                completionHandler(nil)
+                openPanelCompletion = nil
+                return
+            }
+
+            let picker = UIImagePickerController()
+            picker.sourceType = .photoLibrary
+            picker.delegate = self
+            picker.modalPresentationStyle = .fullScreen
+
+            let presenter = webView.window?.rootViewController
+            presenter?.present(picker, animated: true)
+        }
+
+        func imagePickerController(
+            _ picker: UIImagePickerController,
+            didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey: Any]
+        ) {
+            picker.dismiss(animated: true)
+            let url = info[.imageURL] as? URL
+            openPanelCompletion?(url.map { [$0] } ?? [])
+            openPanelCompletion = nil
+        }
+
+        func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+            picker.dismiss(animated: true)
+            openPanelCompletion?(nil)
+            openPanelCompletion = nil
+        }
+
+        // MARK: - Enlaces externos → Safari
+
+        func webView(
+            _ webView: WKWebView,
+            decidePolicyFor navigationAction: WKNavigationAction,
+            decisionHandler: @escaping (WKNavigationActionPolicy) -> Void
+        ) {
+            guard let url = navigationAction.request.url,
+                  navigationAction.navigationType == .linkActivated else {
+                decisionHandler(.allow)
+                return
+            }
+
+            if url.host == appHost || url.host == nil {
+                decisionHandler(.allow)
+            } else {
+                decisionHandler(.cancel)
+                UIApplication.shared.open(url)
+            }
+        }
+
+        func webView(
+            _ webView: WKWebView,
+            createWebViewWith configuration: WKWebViewConfiguration,
+            for navigationAction: WKNavigationAction,
+            windowFeatures: WKWindowFeatures
+        ) -> WKWebView? {
+            if let url = navigationAction.request.url, navigationAction.targetFrame == nil {
+                UIApplication.shared.open(url)
+            }
+            return nil
+        }
+
+        // MARK: - Progreso y errores
+
+        func webView(_ webView: WKWebView, didStartProvisionalNavigation navigation: WKNavigation!) {
+            model?.isLoading = true
+            model?.error = nil
+        }
+
+        func webView(_ webView: WKWebView, didFinish navigation: WKNavigation!) {
+            model?.isLoading = false
+        }
+
+        func webView(_ webView: WKWebView, didFail navigation: WKNavigation!, withError error: Error) {
+            model?.isLoading = false
+            model?.error = error
+        }
+
+        func webView(_ webView: WKWebView, didFailProvisionalNavigation navigation: WKNavigation!, withError error: Error) {
+            model?.isLoading = false
+            model?.error = error
+        }
     }
 }
 

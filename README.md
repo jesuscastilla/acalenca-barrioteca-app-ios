@@ -2,11 +2,15 @@
 
 App nativa para iOS de la Barrioteca Acalenca, generada con un **WKWebView** que empaqueta la app web.
 
+> **Estado actual:** no hay cuenta de Apple Developer, asi que la app **no esta en la App Store**.
+> Los usuarios de iOS usan la **PWA instalable** (`https://pelotxo.synology.me/barrioteca/`). Este repo
+> queda **compilable y operativo desde CI** (IPA sin firmar) para cuando exista cuenta y se pueda publicar.
+
 ## Requisitos
 
 - **Mac** con macOS 13 (Ventura) o superior
 - **Xcode 15** o superior (descargar desde la App Store)
-- **Apple Developer Account** (gratuita para pruebas, $99/año para App Store)
+- **Apple Developer Account** solo para publicar en la App Store ($99/año). Para compilar el IPA sin firmar desde CI no hace falta cuenta.
 
 ## Como generar la app iOS
 
@@ -49,7 +53,20 @@ Anade esto al `Info.plist` del proyecto Xcode:
 <string>La Barrioteca necesita acceder a la camara para escanear los codigos de barras de los libros y las tarjetas de socias.</string>
 ```
 
+## Sideloading (sin cuenta de desarrollador)
+
+Mientras no haya cuenta de Apple Developer, el IPA sin firmar que genera el CI se puede instalar en un iPhone
+propio usando [Sideloadly](https://sideloadly.io/) (Windows/macOS) con un **Apple ID gratuito**:
+
+1. Descarga el artefacto `Barrioteca-iOS-unsigned` del workflow de GitHub Actions.
+2. Abre Sideloadly, arrastra el `.ipa`, introduce tu Apple ID y pulsa Start.
+3. En el iPhone: Ajustes -> General -> VPN y gestion de dispositivos -> confia en el desarrollador.
+
+La instalacion caduca a los **7 dias** (hay que repetir el proceso). Para una instalacion permanente hace falta publicar en la App Store.
+
 ## Publicar en la App Store
+
+> **Pendiente**: requiere una cuenta de **Apple Developer Program** de pago.
 
 1. **Apple Developer Program**: $99 USD/ano
 2. En Xcode: Product -> Archive -> Distribute App

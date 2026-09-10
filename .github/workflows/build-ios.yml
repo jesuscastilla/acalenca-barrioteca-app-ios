@@ -9,6 +9,7 @@ jobs:
   build:
     name: Build iOS IPA
     runs-on: macos-15
+    timeout-minutes: 25
 
     steps:
       - name: Checkout repository
@@ -29,6 +30,7 @@ jobs:
             -sdk iphoneos \
             -destination 'generic/platform=iOS' \
             -archivePath build/Barrioteca.xcarchive \
+            -derivedDataPath build/DerivedData \
             CODE_SIGNING_REQUIRED=NO \
             CODE_SIGNING_ALLOWED=NO \
             DEVELOPMENT_TEAM="" \
