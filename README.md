@@ -38,6 +38,8 @@ Para que la app iOS funcione correctamente, necesitas anadir el archivo `apple-a
 
 2. El archivo debe servirse sin extension `.json` y con content-type `application/json`
 
+Puedes subir el archivo por **SMB** (`\\192.168.50.94\`) o por **SFTP** (`192.168.50.93`, puerto 22).
+
 ## Permisos de camara (Info.plist)
 
 Anade esto al `Info.plist` del proyecto Xcode:
@@ -72,13 +74,18 @@ barrioteca-ios/
 └── .gitignore
 ```
 
+## Repositorio
+
+- **Local**: `g:\GITHUB\barrioteca-ios\`
+- **GitHub**: https://github.com/jesuscastilla/acalenca-barrioteca-app-ios
+
 ## Repositorios relacionados
 
 | Repositorio | Descripcion |
 |------------|-------------|
 | [acalenca-barrioteca-app](https://github.com/jesuscastilla/acalenca-barrioteca-app) | App web (frontend React) |
 | [acalenca-barrioteca](https://github.com/jesuscastilla/acalenca-barrioteca) | SLiMS (backend PHP) |
-| [acalenca-barrioteca-app-android](https://github.com/jesuscastilla/acalenca-barrioteca-app-android) | App Android + docs |
+| [acalenca-barrioteca-app-android-v2](https://github.com/jesuscastilla/acalenca-barrioteca-app-android-v2) | App Android nativa (Kotlin/Compose) |
 
 ## Creditos
 
