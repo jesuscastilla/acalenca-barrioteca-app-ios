@@ -98,6 +98,7 @@ struct WebView: UIViewRepresentable {
 
         // MARK: - Selector de archivo (botón "Foto" del escáner)
 
+        @available(iOS 18.4, *)
         func webView(
             _ webView: WKWebView,
             runOpenPanelWith parameters: WKOpenPanelParameters,
