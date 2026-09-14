@@ -24,6 +24,8 @@
 	<true/>
 	<key>NSCameraUsageDescription</key>
 	<string>La Barrioteca necesita acceder a la cámara para escanear los códigos de barras de los libros y las tarjetas de socias.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>La Barrioteca usa la galería para escanear un código de barras desde una foto.</string>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsArbitraryLoads</key>
