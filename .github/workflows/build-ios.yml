@@ -5,6 +5,9 @@ on:
     branches: [master, main]
   workflow_dispatch:
 
+permissions:
+  contents: write
+
 jobs:
   build:
     name: Build iOS IPA
@@ -49,6 +52,14 @@ jobs:
           name: Barrioteca-iOS-unsigned
           path: Barrioteca-Acalenca.ipa
           retention-days: 90
+
+      - name: Publish Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: build-${{ github.run_number }}
+          name: "Build ${{ github.run_number }}"
+          prerelease: true
+          files: Barrioteca-Acalenca.ipa
 
       - name: Show IPA info
         run: |
