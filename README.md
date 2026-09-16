@@ -3,7 +3,7 @@
 App nativa para iOS de la Barrioteca Acalenca, generada con un **WKWebView** que empaqueta la app web.
 
 > **Estado actual:** no hay cuenta de Apple Developer, asi que la app **no esta en la App Store**.
-> Los usuarios de iOS usan la **PWA instalable** (`https://corrientelebeche.es/barrioteca/`). Este repo
+> Los usuarios de iOS usan la **PWA instalable** (`https://www.corrientelebeche.es/barrioteca/`). Este repo
 > queda **compilable y operativo desde CI** (IPA sin firmar) para cuando exista cuenta y se pueda publicar.
 
 ## Requisitos
@@ -26,7 +26,7 @@ La app iOS se genera con un proyecto Xcode que carga la app web en un `WKWebView
 | Dato | Valor |
 |------|-------|
 | Bundle ID | `com.barrioteca.acalenca.ios` |
-| URL | `https://corrientelebeche.es/barrioteca` |
+| URL | `https://www.corrientelebeche.es/barrioteca` |
 | Tecnologia | WKWebView (WebKit) |
 | Version minima iOS | 15.0 |
 | Permisos | Camara (NSCameraUsageDescription) |
@@ -38,7 +38,7 @@ Para que la app iOS funcione correctamente, necesitas anadir el archivo `apple-a
 
 1. Sube el archivo `apple-app-site-association` (incluido en este repo) a:
    - `/barrioteca/.well-known/apple-app-site-association`
-   - O bien a la raiz del dominio: `https://corrientelebeche.es/.well-known/apple-app-site-association`
+   - O bien a la raiz del dominio: `https://www.corrientelebeche.es/.well-known/apple-app-site-association`
 
 2. El archivo debe servirse sin extension `.json` y con content-type `application/json`
 
@@ -79,7 +79,7 @@ La instalacion caduca a los **7 dias** (hay que repetir el proceso). Para una in
 La app no recopila datos personales. Todo el procesamiento ocurre en el NAS de la barrioteca. La URL de privacidad puede ser:
 
 ```
-https://corrientelebeche.es/barrioteca/privacidad.html
+https://www.corrientelebeche.es/barrioteca/privacidad.html
 ```
 
 ## Estructura del repositorio
