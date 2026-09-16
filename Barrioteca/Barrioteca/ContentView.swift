@@ -2,8 +2,10 @@ import SwiftUI
 import UIKit
 import WebKit
 
-private let appURL = URL(string: "https://pelotxo.synology.me/barrioteca/")!
-private let appHost = "pelotxo.synology.me"
+private let appURL = URL(string: "https://www.corrientelebeche.es/barrioteca/")!
+private let appHost = "www.corrientelebeche.es"
+// Host antiguo: se acepta durante la transición para no romper enlaces guardados.
+private let legacyHost = "pelotxo.synology.me"
 
 struct ContentView: View {
     @StateObject private var model = WebViewModel()
@@ -151,7 +153,7 @@ struct WebView: UIViewRepresentable {
                 return
             }
 
-            if url.host == appHost || url.host == nil {
+            if url.host == appHost || url.host == legacyHost || url.host == nil {
                 decisionHandler(.allow)
             } else {
                 decisionHandler(.cancel)
